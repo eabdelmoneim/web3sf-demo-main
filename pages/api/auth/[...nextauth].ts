@@ -1,0 +1,17 @@
+import GoogleProvider from "next-auth/providers/google";
+import { ThirdwebNextAuth } from "@thirdweb-dev/auth/next-auth";
+
+export const { NextAuthHandler, getUser } = ThirdwebNextAuth({
+  privateKey: process.env.THIRDWEB_AUTH_PRIVATE_KEY || "",
+  domain: "thirdweb.com",
+  nextOptions: {
+    providers: [
+      GoogleProvider({
+        clientId: process.env.GOOGLE_CLIENT_ID || "",
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+      }),
+    ],
+  },
+});
+
+export default NextAuthHandler;
